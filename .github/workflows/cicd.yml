@@ -36,26 +36,4 @@ jobs:
             --cov-report=xml \
             --cov-report=html \
 
-      - name: prepate the site
-        run: |
-           mkdir site
-           mv htmlcov site/
-           mv coverage.xml site/
-           
-      - name: upload the artifacts
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: ./site
-  
-  deploy:
-    needs: run-tests
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-
-    steps:
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
-
   
