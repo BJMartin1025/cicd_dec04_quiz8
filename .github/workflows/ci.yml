@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ dev ]
   pull_request:
 
 jobs:
@@ -34,27 +34,4 @@ jobs:
             --cov=. \
             --cov-report=term \
             --cov-report=xml \
-            --cov-report=html \
-
-      - name: Prepare the webpage
-        run: |
-          mkdir sites
-          mv htmlcov sites/
-          mv coverage.xml sites/
-
-      - name: upload the artifacts
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: ./sites
-
-  Deploy:
-    needs: run-tests
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    steps:
-      - name: deploy the artifacts
-        uses: actions/deploy-pages@v4
-    
-    
+            --cov-report=html
