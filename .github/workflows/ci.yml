@@ -28,3 +28,11 @@ jobs:
 
       - name: Run basic tests
         run: pytest -q
+
+      - name: Run tests with coverage
+        run: |
+          pytest -q \
+            --cov=. \
+            --cov-report=term \
+            --cov-report=xml \
+            --cov-report=html
