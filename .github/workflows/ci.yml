@@ -36,3 +36,8 @@ jobs:
             --cov-report=term \
             --cov-report=xml \
             --cov-report=html
+
+      - name: Display coverage summary
+        run: |
+          echo "Tests completed on development branch"
+          echo "Coverage report generated"
