@@ -37,7 +37,8 @@ jobs:
             --cov-report=xml \
             --cov-report=html
 
-      - name: Display coverage summary
-        run: |
-          echo "Tests completed on development branch"
-          echo "Coverage report generated"
+      - name: Upload Report Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: htmlcov/
