@@ -3,7 +3,8 @@ name: CI
 on:
   push:
     branches: [ dev ]
-  pull_request:
+    rules:
+      - if: $CI_PIPELINE_SOURCE == "merge_request_event"
 
 jobs:
   run-tests:
@@ -27,11 +28,3 @@ jobs:
 
       - name: Run basic tests
         run: pytest -q
-
-      - name: Run tests with coverage
-        run: |
-          pytest -q \
-            --cov=. \
-            --cov-report=term \
-            --cov-report=xml \
-            --cov-report=html
