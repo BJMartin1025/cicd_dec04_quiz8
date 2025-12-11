@@ -3,8 +3,6 @@ name: CD
 on:
   push:
     branches: [ master ]
-    rules:
-      - if: $CI_PIPELINE_SOURCE == "merge_request_event"
 
 jobs:
   run-tests:
@@ -35,7 +33,7 @@ jobs:
             --cov=. \
             --cov-report=term \
             --cov-report=xml \
-            --cov-report=html \
+            --cov-report=html
 
       - name: Prepare the webpage
         run: |
@@ -54,11 +52,6 @@ jobs:
     permissions:
       pages: write
       id-token: write
-    environment:
-      name: github-pages
     steps:
       - name: deploy the artifacts
         uses: actions/deploy-pages@v4
-        with:
-          name: content.html
-          path: ./sites
